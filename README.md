@@ -54,6 +54,23 @@ I'd recommend to connect the relay in parallel to the push button. So you can us
 > http://garage/
 
 
+### customisations
+
+#### circuit time
+Depending on your garagedoor you may have to adtapt the circuit time, see line 61 of `gargage.ino`
+
+```c
+if (server.arg(0)[0] == '2') {
+  ...
+  digitalWrite(relayPin, HIGH);
+  delay(500); //you may have to change this delay
+  digitalWrite(relayPin, LOW);
+  ...
+}
+```
+
+
+#### hostname
 If you do not like this hostname check line 23 of `gargage.ino` and change it.
 ```c
 const char* WiFi_hostname = "garage";

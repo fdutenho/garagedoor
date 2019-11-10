@@ -58,7 +58,7 @@ void handleRoot() {
     Serial.print("impulse: ");
     digitalWrite(relayPin, HIGH);
     Serial.print("on ");
-    delay(500);
+    delay(500); //you may have to change this delay
     digitalWrite(relayPin, LOW);
     Serial.print("off");
     Serial.println("");
