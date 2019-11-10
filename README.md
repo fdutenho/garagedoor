@@ -32,15 +32,15 @@ const char* password = "...";
 
 ### development phase
 
-1. Connect the 3V and GND from the nodeMCU to the relay.
-1. Connect the D0 of the nodeMCU to the COM of the relay.
+1. Connect the `3V` and `GND` from the nodeMCU with the `-` and `+` of the relay.
+1. Connect the `D0` of the nodeMCU to the `S` (signal) of the relay.
 1. During development you will use the USB cable to connect the nodeMCU to your computer.
 
 ### operations mode
 Unplug the nodeMCU from your computer. Carry it to your garage and find a place with access to 230V and the push button that opens your garage (at least it's cable).
 
 1. Use an AC/DC power adapter and a USB cable to empower the nodeMCU.
-1. connect the relay to your garage door's push button
+1. connect the relay to your garage door's push button. Use the `NO` (normally open) and the `COM` ports of the relay. If you hit the "open" button with your mobile device the app will close the port for a few miliseconds and opens it again (same befavior as you pushing the push button).
 
 I'd recommend to connect the relay in parallel to the push button. So you can use both to open/close the door fo your garage.
 
@@ -56,3 +56,5 @@ const char* WiFi_hostname = "garage";
 
 # credits & thanks
 Thanks to Sarah Ali, her code and blog helped a lot to speed up this project (see http://onlineshouter.com/how-to-control-a-relay-from-a-web-page-with-nodemcu/)
+
+Thanks to the one who made the "remote" image available for re-use on Wikimedia Commons (see https://commons.wikimedia.org/wiki/File:Ic_settings_remote_48px.svg).
