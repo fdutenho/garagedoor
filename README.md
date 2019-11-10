@@ -36,6 +36,9 @@ const char* password = "...";
 1. Connect the `D0` of the nodeMCU to the `S` (signal) of the relay.
 1. During development you will use the USB cable to connect the nodeMCU to your computer.
 
+![front view](front.jpg "front view")
+![rear veiew](back.jpg "rear view")
+
 ### operations mode
 Unplug the nodeMCU from your computer. Carry it to your garage and find a place with access to 230V and the push button that opens your garage (at least it's cable).
 
