@@ -20,7 +20,7 @@ static const uint8_t D10  = 1;
 //const char* ssid = "...";
 //const char* password = "...";
 
-const char* WiFi_hostname = "Garage";
+const char* WiFi_hostname = "garage";
 const int relayPin = D0;
 
 ESP8266WebServer server(80);
@@ -54,14 +54,6 @@ void connectToWiFi() {
 }
 
 void handleRoot() {
-  if (server.arg(0)[0] == '0') {
-    Serial.println("turn off");
-    digitalWrite(relayPin, LOW);
-  }
-  if (server.arg(0)[0] == '1') {
-    Serial.println("turn on");
-    digitalWrite(relayPin, HIGH);
-  }
   if (server.arg(0)[0] == '2') {
     Serial.print("impulse: ");
     digitalWrite(relayPin, HIGH);
@@ -127,8 +119,6 @@ void handleRoot() {
 
   msg += "<body>\n";
   msg += "<h1>Garagentor</h1>\n";
-  //msg += "<h2><a href='?a=1'/>On</a></h2>\n";
-  //msg += "<h2><a href='?a=0'/>Off</a></h2>\n";
   msg += "<a onClick='openGarage()'/>auf/zu</a>\n";
   msg += "</body>\n";
   msg += "</html>";

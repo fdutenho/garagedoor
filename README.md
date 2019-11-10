@@ -1,7 +1,21 @@
 # garagedoor
-control garage door via nodeMCU and a relay
+> Control you garage door with your mobile phone
 
-## prepare
+To do you you connect your garage door's push button via a relay to a nodeMCU.
+The nodeMCU connects to our home WiFi and runs a web server. You can reach this web server from your mobile inside your home WiFi.
+
+## 1. preparation
+### hardware requirements
+You need the following hardware
+* 1x nodeMCU
+* 1x Relay (3v-5v Relay)
+* 1x 230V/5V power
+* 1x USB cable (to power the nodeMCU)
+* 3x 5v cable (to connect the relay with the nodeMCU)
+* 2x 1.5mm² to connect the realy with the garagedoor's push button
+* optional: mount, screw and screw nut (M3)
+
+### prepare code
 Before you compile the code you have to add a `passwd.h` file to the folder and add two lines.
 
 `garage.ino` includes this file (see line 18: `#include "passwd.h"`).
@@ -13,3 +27,32 @@ Add the folowon two lines to `passwd.h` and replace the "..." with your Wifi SSI
 const char* ssid = "...";
 const char* password = "...";
 ```
+
+## 2. mount the hardware
+
+### development phase
+
+1. Connect the 3V and GND from the nodeMCU to the relay.
+1. Connect the D0 of the nodeMCU to the COM of the relay.
+1. During development you will use the USB cable to connect the nodeMCU to your computer.
+
+### operations mode
+Unplug the nodeMCU from your computer. Carry it to your garage and find a place with access to 230V and the push button that opens your garage (at least it's cable).
+
+1. Use an AC/DC power adapter and a USB cable to empower the nodeMCU.
+1. connect the relay to your garage door's push button
+
+I'd recommend to connect the relay in parallel to the push button. So you can use both to open/close the door fo your garage.
+
+## 3. use it
+> Open the following link in a web brower of a device in the same WiFi than the nodeMCU
+> http://garage/
+
+
+If you do not like this hostname check line 23 of `gargage.ino` and change it.
+```c
+const char* WiFi_hostname = "garage";
+```
+
+# credits & thanks
+Thanks to Sarah Ali, her code and blog helped a lot to speed up this project (see http://onlineshouter.com/how-to-control-a-relay-from-a-web-page-with-nodemcu/)
