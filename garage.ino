@@ -16,9 +16,10 @@ static const uint8_t D9   = 3;
 static const uint8_t D10  = 1;
 
 #include "passwd.h"
-
+//passwd.h has to have 2 lines:
 //const char* ssid = "...";
 //const char* password = "...";
+
 const char* WiFi_hostname = "Garage";
 const int relayPin = D0;
 
