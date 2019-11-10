@@ -4,6 +4,8 @@
 To do you you connect your garage door's push button via a relay to a nodeMCU.
 The nodeMCU connects to our home WiFi and runs a web server. You can reach this web server from your mobile inside your home WiFi.
 
+![How it looks on an iPhone](iPhone.png)
+
 ## 1. preparation
 ### hardware requirements
 You need the following hardware
