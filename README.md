@@ -76,6 +76,21 @@ If you do not like this hostname check line 23 of `gargage.ino` and change it.
 const char* WiFi_hostname = "garage";
 ```
 
+## budget
+
+You require the following items (less than 11 EUR in total):
+
+item | image | price
+--- | --- | ---
+nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
+Relay | ![Relay](./relay.jpg) | 0,80 EUR
+USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
+Case | ![Case](./box.jpg)  |  1,80 EUR
+Cables | ![Cables](./cable.jpg) |  ca. 0,10 EUR
+USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,03 EUR
+
+
+
 # credits & thanks
 Thanks to Sarah Ali, her code and blog helped a lot to speed up this project (see http://onlineshouter.com/how-to-control-a-relay-from-a-web-page-with-nodemcu/)
 
