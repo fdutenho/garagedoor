@@ -82,12 +82,12 @@ You require the following items (less than 11 EUR in total):
 
 item | image | price
 --- | --- | ---
-nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
-Relay | ![Relay](./relay.jpg) | 0,80 EUR
-USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
-Case | ![Case](./box.jpg)  |  1,80 EUR
-Cables | ![Cables](./cable.jpg) <br> only 3 are required ;-) |  ca. 0,10 EUR
-USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,03 EUR
+1x nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
+1x Relay | ![Relay](./relay.jpg) | 0,80 EUR
+1x USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
+1x Case | ![Case](./box.jpg)  |  1,80 EUR
+3x Cable | ![Cables](./cable.jpg) <br> only 3 are required ;-) |  ca. 0,10 EUR
+1x USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,03 EUR
 
 
 
