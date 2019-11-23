@@ -8,14 +8,22 @@ The nodeMCU connects to our home WiFi and runs a web server. You can reach this 
 
 ## 1. preparation
 ### hardware requirements
-You need the following hardware
-* 1x nodeMCU
-* 1x Relay (3v-5v Relay)
-* 1x 230V/5V power
-* 1x USB cable (to power the nodeMCU)
-* 3x 5v cable (to connect the relay with the nodeMCU)
-* 2x 1.5mm² to connect the relay with the garage door's push button
-* optional: mount, screw and screw nut (M3)
+
+You require the following items (less than 11 EUR in total):
+
+item | image | price
+--- | --- | ---
+1x nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
+1x Relay | ![Relay](./relay.jpg) | 0,80 EUR
+1x USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
+1x Case | ![Case](./box.jpg)  |  1,80 EUR
+3x 5v Cable | ![5V cables](./cable.jpg) <br> only 3 are required ;-) |  ca. 0,10 EUR
+2x 1.5mm² Cable <br>(depends on your garage door)  | ![240v cables](./cable2.jpg) | ca. 0.10 EUR
+1x USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,00 EUR
+
+optional:
+* mount, screw and screw nut (M3)
+* you may need an additional power outlet as well
 
 ### prepare code
 Before you compile the code you have to add a `passwd.h` file to the folder and add two lines.
@@ -75,21 +83,6 @@ If you do not like this hostname check line 23 of `gargage.ino` and change it.
 ```c
 const char* WiFi_hostname = "garage";
 ```
-
-## budget
-
-You require the following items (less than 11 EUR in total):
-
-item | image | price
---- | --- | ---
-1x nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
-1x Relay | ![Relay](./relay.jpg) | 0,80 EUR
-1x USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
-1x Case | ![Case](./box.jpg)  |  1,80 EUR
-3x Cable | ![Cables](./cable.jpg) <br> only 3 are required ;-) |  ca. 0,10 EUR
-1x USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,03 EUR
-
-
 
 # credits & thanks
 Thanks to Sarah Ali, her code and blog helped a lot to speed up this project (see http://onlineshouter.com/how-to-control-a-relay-from-a-web-page-with-nodemcu/)
