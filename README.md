@@ -16,9 +16,9 @@ item | image | price
 1x nodeMCU | ![nodeMCU](./nodemcu.jpg) | 3,60 EUR
 1x Relay | ![Relay](./relay.jpg) | 0,80 EUR
 1x USB Cable | ![USB Cable](./usb.jpg) | 1,50 EUR
-1x Case | ![Case](./box.jpg)  |  1,80 EUR
-3x 5v Cable |![5V cables](./cable.jpg) <br> only 3 are required ;-)|ca. 0,10 EUR
-2x 1.5mm² Cable <br>(depends on your garage door)  | ![240v cables](./cable2.jpg) | ca. 0.10 EUR
+1x Case | ![Case](./box.jpg) | 1,80 EUR
+3x 5v Cable | ![5V cables](./cable.jpg) <br> only 3 are required ;-) | ca. 0,10 EUR
+2x 1.5mm² Cable <br>(depends on your garage door) | ![240v cables](./cable2.jpg) | ca. 0.10 EUR
 1x USB Power Adapter 240V/5V | ![USB Power Adapter 240V/5V](./power.jpg) | 3,00 EUR
 
 optional:
