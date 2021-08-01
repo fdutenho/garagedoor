@@ -22,7 +22,7 @@ static const uint8_t D10  = 1;
 
 const char* WiFi_hostname = "garage";
 const int relayPin = D0;
-
+String globalLog;
 ESP8266WebServer server(80);
 
 void setup() {
@@ -54,7 +54,7 @@ void connectToWiFi() {
 }
 
 void handleRoot() {
-  if (server.arg(0)[0] == '2') {
+  if (server.arg("ops").length()>0 && String(server.arg("ops")) == "oc") {
     Serial.print("impulse: ");
     digitalWrite(relayPin, HIGH);
     Serial.print("on ");
@@ -62,11 +62,16 @@ void handleRoot() {
     digitalWrite(relayPin, LOW);
     Serial.print("off");
     Serial.println("");
+    globalLog += String(millis()/1000,DEC);
+    globalLog += "ms: open/close \n<br>";
+    if(globalLog.length()>2000) {
+      globalLog = globalLog.substring(0,2000);
+    }
   }
 
   String msg = "";
   msg += "<!doctype html>\n";
-  msg += "<html lang=\"en\">\n";
+  msg += "<html lang=\"de\">\n";
   msg += "<head>\n";
   msg += "<META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\"/>\n";
   msg += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n";
@@ -108,9 +113,13 @@ void handleRoot() {
   msg += "</style>\n";
 
   msg += "<script>\n";
+  String command = "?ops=oc";
+  if (server.arg("log").length() >0 && String(server.arg("log")) == "list") {
+    command += "&log=list"; 
+  }
   msg += "function openGarage() { \
       var xhttp = new XMLHttpRequest(); \
-      xhttp.open(\"GET\", \"?a=2\", true); \
+      xhttp.open(\"GET\", \""+command+"\", true); \
       xhttp.send(); \
     }\n";
   msg += "</script>\n";
@@ -120,6 +129,19 @@ void handleRoot() {
   msg += "<body>\n";
   msg += "<h1>Garagentor</h1>\n";
   msg += "<a onClick='openGarage()'/>auf/zu</a>\n";
+
+  for (int i = 0; i < server.args(); i++) {
+    Serial.print("Arg #" + (String)i + " –>" + server.arg(i) + "\n");
+  } 
+  
+  if (server.arg("log").length() >0 && String(server.arg("log")) == "list") {
+    Serial.print("protocol: \n");
+    msg += "<hr/>\n";
+    msg += "<h4>Protocol:</h4>\n";
+    Serial.println("globalLog:" + globalLog);
+    msg += globalLog;
+    msg += "<hr/>\n";
+  }
   msg += "</body>\n";
   msg += "</html>";
 
