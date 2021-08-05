@@ -61,6 +61,13 @@ I'd recommend to connect the relay in parallel to the push button. So you can us
 > Open the following link in a web browser of a device in the same WiFi than the nodeMCU
 > <http://garage/>
 
+### Advances usage
+Use http://garage/?ops=oc for directly sending an open/close command
+
+Use http://garage/?log=list for enabling a command log output on the webpage
+
+You may combine both params of course, e.g. http://garage/?ops=oc&log=list
+
 
 ### customisations
 
@@ -68,7 +75,7 @@ I'd recommend to connect the relay in parallel to the push button. So you can us
 Depending on your garage door you may have to adapt the circuit time, see line 61 of `gargage.ino`
 
 ```c
-if (server.arg(0)[0] == '2') {
+if (server.arg("ops").length()>0 && String(server.arg("ops")) == "oc") {
   ...
   digitalWrite(relayPin, HIGH);
   delay(500); //you may have to change this delay
