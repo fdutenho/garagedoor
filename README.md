@@ -61,7 +61,7 @@ I'd recommend to connect the relay in parallel to the push button. So you can us
 > Open the following link in a web browser of a device in the same WiFi than the nodeMCU
 > <http://garage/>
 
-### Advances usage
+### Advanced usage
 Use http://garage/?ops=oc for directly sending an open/close command
 
 Use http://garage/?log=list for enabling a command log output on the webpage
