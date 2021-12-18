@@ -2,6 +2,8 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
 static const uint8_t D0   = 16;
 static const uint8_t D1   = 5;
@@ -14,6 +16,11 @@ static const uint8_t D7   = 13;
 static const uint8_t D8   = 15;
 static const uint8_t D9   = 3;
 static const uint8_t D10  = 1;
+
+static const int logLength = 20000;
+
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP);
 
 #include "passwd.h"
 //passwd.h has to have 2 lines:
@@ -29,40 +36,43 @@ void setup() {
   pinMode(relayPin, OUTPUT);
   Serial.begin(9600);
   connectToWiFi();
+  timeClient.setTimeOffset(3600);
+  timeClient.begin();
   server.on("/", handleRoot);
   server.begin();
   Serial.println("HTTP server started");
 }
 
-String uptimeHMS() {
-  unsigned long msecs = millis();
-  char HMS[] = "00d 00h 00m 00s 000ms";
-
-  int d = msecs/86400000;
-  msecs = msecs - (d*86400000);
-  int h = msecs/3600000;
-  msecs = msecs - (h*3600000);
-  int m = msecs/60000;
-  msecs = msecs - (m*60000);
-  int s = msecs/1000;
-  msecs = msecs - (s*1000);
-  
-  sprintf(HMS, "%2id %2ih %2im %2is %3ims",d,h,m,s,msecs);
-  return String(HMS);
-}
-
 void checkWiFiConnection(){
   //see if WiFi is still connected, reconnect if needed
   if(WiFi.status() != WL_CONNECTED) {
-    globalLog += uptimeHMS();
-    globalLog += ": WiFi connection lost, reconnect\n";
+    log("WiFi connection lost, reconnect");
     connectToWiFi();
   }
 }
 
+void log(String msg) {
+  time_t rawtime = timeClient.getEpochTime();
+  struct tm * ti;
+  ti = localtime (&rawtime);
+  
+  int year = ti->tm_year + 1900;
+  int month = (ti->tm_mon + 1) < 10 ? 0 + (ti->tm_mon + 1) : (ti->tm_mon + 1);
+  int day = (ti->tm_mday) < 10 ? 0 + (ti->tm_mday) : (ti->tm_mday);
+  
+  String weekDays[7]={"So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"};
+
+  String logLine = weekDays[timeClient.getDay()] + ", " + String(day) + "." + String(month) + "." + String(year) + " " + timeClient.getFormattedTime() + " --> " + msg + "\n";
+  globalLog = logLine + globalLog;
+}
+
 void loop() {
+  timeClient.update();
   server.handleClient();
   checkWiFiConnection();
+  if(globalLog.length()>logLength) {
+    globalLog = globalLog.substring(0,logLength*0.8) + " [...]";
+  }
 }
 
 void connectToWiFi() {
@@ -89,11 +99,7 @@ void handleRoot() {
     digitalWrite(relayPin, LOW);
     Serial.print("off");
     Serial.println("");
-    globalLog += uptimeHMS();
-    globalLog += ": open/close\n";
-    if(globalLog.length()>2000) {
-      globalLog = globalLog.substring(0,2000);
-    }
+    log("open/close");
   }
 
   String httpResponse = "";
@@ -164,7 +170,7 @@ void handleRoot() {
   
   if (server.arg("log").length() >0 && String(server.arg("log")) == "list") {
     httpResponse += "<hr/>\n";
-    httpResponse += "<h4>Protocol:</h4><pre>\n";
+    httpResponse += "<h4 style=\"text-align: left; margin-left: 20px;\">Protocol:</h4><pre style=\"text-align: left; margin-left: 20px;\">\n";
     Serial.println("globalLog:\n" + globalLog);
     httpResponse += globalLog;
     httpResponse += "</pre><hr/>\n";
